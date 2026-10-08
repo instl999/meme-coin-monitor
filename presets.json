@@ -1,0 +1,130 @@
+{
+ "version": 1,
+ "_about": "Built-in traders per chain: wallets with a good last 30 days across every token they traded (at least $500 and 10% on what they spent, over 3+ tokens, winning on most, no scalping, not bot-like, active in the last 7 days). Candidates come from each chain's trending pools. Made with: python holder_watch.py presets refresh CHAIN... A refreshed list is saved to presets.local.json, which wins over this file. Past results are not a prediction.",
+ "chains": {
+  "solana": [
+   {
+    "address": "8kf6fTyk8R6SrKi41G6Gq8PVYVRxEZh9bDsC72HkhpjG",
+    "label": "Solana pro #1",
+    "pnl_usd": 23641.16,
+    "roi_pct": 36.7,
+    "days": 30,
+    "tokens_traded": 4,
+    "win_rate": 0.5,
+    "avg_hold_hours": 66.5,
+    "last_trade": "2026-10-07",
+    "best_tokens": [
+     [
+      "PAID",
+      23507.81
+     ],
+     [
+      "PBTC",
+      261.19
+     ],
+     [
+      "Fartcoin",
+      -7.71
+     ]
+    ],
+    "as_of": "2026-10-07"
+   }
+  ],
+  "ethereum": [
+   {
+    "address": "0x444f04d7e3ce0e15f876c23f5d782cf113bd8a33",
+    "label": "Ethereum pro #1",
+    "pnl_usd": 2861.54,
+    "roi_pct": 25.0,
+    "days": 30,
+    "tokens_traded": 8,
+    "win_rate": 0.5,
+    "avg_hold_hours": 20.4,
+    "last_trade": "2026-10-08",
+    "best_tokens": [
+     [
+      "CLAUS",
+      2987.38
+     ],
+     [
+      "0xc9fa4ca9fb6a74f29031dfa9045559983e5cb116",
+      813.94
+     ],
+     [
+      "0xbb0c1f82a2ea0253ea3d91c2f05caded82133415",
+      428.49
+     ]
+    ],
+    "as_of": "2026-10-07"
+   }
+  ],
+  "base": [
+   {
+    "address": "0x9e3132a5417b58235438e9b2fab1fd5c7f4f0c52",
+    "label": "Base pro #1",
+    "pnl_usd": 2116.07,
+    "roi_pct": 10.0,
+    "days": 30,
+    "tokens_traded": 4,
+    "win_rate": 0.75,
+    "avg_hold_hours": 77.2,
+    "last_trade": "2026-10-07",
+    "best_tokens": [
+     [
+      "0x22af33fe49fd1fa80c7149773dde5890d3c76f3b",
+      1395.19
+     ],
+     [
+      "0xc52aedec3374422d7510e294cfaa90799595cba3",
+      638.02
+     ],
+     [
+      "aeon",
+      93.1
+     ]
+    ],
+    "as_of": "2026-10-07"
+   }
+  ],
+  "bsc": [
+   {
+    "address": "0x7972111abd594677e649c8303ba17ee6e17ed158",
+    "label": "BNB Chain pro #1",
+    "pnl_usd": 2489.74,
+    "roi_pct": 27.6,
+    "days": 30,
+    "tokens_traded": 4,
+    "win_rate": 0.75,
+    "avg_hold_hours": 17.9,
+    "last_trade": "2026-10-07",
+    "best_tokens": [
+     [
+      "BREW",
+      2577.15
+     ],
+     [
+      "0xb1b798c76a9f7bc6f5002dd72c23cf0d64b76666",
+      382.11
+     ],
+     [
+      "0xd69a4b260ef021ccd4e1c5f5a4fb522b032ce831",
+      68.71
+     ]
+    ],
+    "as_of": "2026-10-07"
+   }
+  ]
+ },
+ "criteria": {
+  "days": 30,
+  "min_tokens": 3,
+  "min_win_rate": 0.5,
+  "min_pnl_usd": 500,
+  "min_roi_pct": 10,
+  "max_trades": 600,
+  "min_hold_minutes": 60,
+  "max_scalp_share": 0.5,
+  "active_days": 7,
+  "max_transfers": 800
+ }
+}

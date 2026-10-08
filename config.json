@@ -1,0 +1,122 @@
+{
+  "_comment": "Read-only monitor settings. Secrets (Helius and Alchemy keys, Telegram token) belong in .env, never here. Set a rule to null to turn it off. README.md explains every setting.",
+  "mint": "ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg",
+  "rpc_url": "https://api.mainnet-beta.solana.com",
+  "poll_seconds": 30,
+  "top_n": 10,
+  "exclude_owners": [],
+  "_whales": "always_alert_owners = the 5 largest non-pool wallets on 2026-10-06, chosen by size only: all regular wallets that bought through the pool, none bot-like. Any outflow from them alerts. Edit freely.",
+  "_trader": "Trader 1 (HWM6...yW3t), added 2026-10-06: best result on CYBERLEEK among the top 60 holders not already watched (self-funded, non-bot, 2 profitable sells, +46.5 SOL / +90% incl. its open position). Past results only, not a prediction.",
+  "always_alert_owners": [
+    "CnqRsXxKURJsDVfqfnReZ65KANgBpExPnimsevUFsrrA",
+    "H11BgsE5NTW4bJhTyCSvFZ5KJcf3yadGUofH8vSiCRHi",
+    "2HypYzjY1vyKuSKQK1c3CLLHEm1xyhCJwLknCLaa9SoQ",
+    "CsaDsSkWjCMMZ6BXzzHSw6qVV4pm2RryeaLer3d68XKH",
+    "3Yg5pF38z9seCe4pgRgU5g7Gj4TCLyvAak7Qm7DSbagU",
+    "HWM6KGKSQrJMeSnQLp1XotYshHBaRg1St5VEquaHyW3t"
+  ],
+  "labels": {
+    "CnqRsXxKURJsDVfqfnReZ65KANgBpExPnimsevUFsrrA": "Whale 1",
+    "H11BgsE5NTW4bJhTyCSvFZ5KJcf3yadGUofH8vSiCRHi": "Whale 2",
+    "2HypYzjY1vyKuSKQK1c3CLLHEm1xyhCJwLknCLaa9SoQ": "Whale 3",
+    "CsaDsSkWjCMMZ6BXzzHSw6qVV4pm2RryeaLer3d68XKH": "Whale 4",
+    "3Yg5pF38z9seCe4pgRgU5g7Gj4TCLyvAak7Qm7DSbagU": "Whale 5",
+    "HWM6KGKSQrJMeSnQLp1XotYshHBaRg1St5VEquaHyW3t": "Trader 1"
+  },
+  "auto_exclude_pools": true,
+  "rules": {
+    "stop_price_usd": null,
+    "trailing_stop_pct": null,
+    "min_liquidity_usd": 100000,
+    "holder_drop_pct": 20,
+    "combined_drop_pct": 10,
+    "window_minutes": 60
+  },
+  "alert_cooldown_minutes": {
+    "holder_drop_pct": 30,
+    "always_alert_owners": 0,
+    "combined_drop_pct": 30,
+    "stop_price_usd": 60,
+    "trailing_stop_pct": 60,
+    "min_liquidity_usd": 60,
+    "monitor_failure": 60
+  },
+  "heartbeat": {
+    "enabled": true,
+    "time": "10:00",
+    "timezone": "America/New_York"
+  },
+  "max_consecutive_failures": 5,
+  "max_tracked_owners": 50,
+  "traders": {
+    "_comment": "Wallets whose trades alert you, on solana, ethereum, base, bsc or arbitrum (\"chain\", default solana; Ethereum, Base and Arbitrum work without a key, BNB Chain needs ANKR_API_KEY in .env). Add more with: python holder_watch.py setup, presets add CHAIN, discover, or traders add. Built-in traders (\"preset\": true) are renewed monthly on the server (presets renew). tokens: \"any\" = their trades in every token, \"source\" = only the token each was discovered on, \"major\" = only major tokens; a wallet can set its own tokens and min_trade_usd. README: Trader watch.",
+    "wallets": [
+      {
+        "_comment": "Built-in major-token monitor for Trader 1: its buys and sells of SOL (for USDC/USDT), BTC, ETH, JUP, BONK and the other major tokens (README: Major-token monitor). Its CYBERLEEK sells still alert through always_alert_owners.",
+        "chain": "solana",
+        "address": "HWM6KGKSQrJMeSnQLp1XotYshHBaRg1St5VEquaHyW3t",
+        "label": "Trader 1",
+        "tokens": "major"
+      },
+      {
+        "chain": "solana",
+        "address": "8kf6fTyk8R6SrKi41G6Gq8PVYVRxEZh9bDsC72HkhpjG",
+        "label": "Solana pro #1",
+        "preset": true,
+        "pnl_usd": 23641.16,
+        "roi_pct": 36.7,
+        "added": "2026-10-07"
+      },
+      {
+        "chain": "bsc",
+        "address": "0x7972111abd594677e649c8303ba17ee6e17ed158",
+        "label": "BNB Chain pro #1",
+        "preset": true,
+        "pnl_usd": 2489.74,
+        "roi_pct": 27.6,
+        "added": "2026-10-07"
+      },
+      {
+        "chain": "base",
+        "address": "0x9e3132a5417b58235438e9b2fab1fd5c7f4f0c52",
+        "label": "Base pro #1",
+        "preset": true,
+        "pnl_usd": 2116.07,
+        "roi_pct": 10.0,
+        "added": "2026-10-07"
+      },
+      {
+        "chain": "ethereum",
+        "address": "0x444f04d7e3ce0e15f876c23f5d782cf113bd8a33",
+        "label": "Ethereum pro #1",
+        "preset": true,
+        "pnl_usd": 2861.54,
+        "roi_pct": 25.0,
+        "added": "2026-10-07"
+      }
+    ],
+    "poll_seconds": 60,
+    "alert_buys": true,
+    "alert_sells": true,
+    "tokens": "any",
+    "min_trade_usd": 10,
+    "major_mints": [],
+    "major_min_market_cap_usd": 500000000
+  },
+  "_signal_log": "Every alerted trade is also written as one JSON line to signal_log (null turns it off): a stable record for backtests and a future copy-trading executor.",
+  "signal_log": "signals.jsonl",
+  "discovery": {
+    "_comment": "How 'discover' ranks a token's traders by profit, on any supported chain. min_hold_minutes / max_scalp_share leave out scalpers. README: Trader discovery.",
+    "scan_transactions": 2000,
+    "lookback_hours": 168,
+    "pools": 3,
+    "candidates": 40,
+    "max_wallet_transactions": 300,
+    "min_buy_usd": 100,
+    "max_trades": 200,
+    "min_hold_minutes": 60,
+    "max_scalp_share": 0.5,
+    "show": 15,
+    "watch": 5
+  }
+}

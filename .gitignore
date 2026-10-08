@@ -1,0 +1,20 @@
+# Secrets
+.env
+
+# Runtime data and build output
+state.json
+state.json.*
+trader_state.json
+trader_state.json.*
+signals.jsonl
+presets.local.json
+config.json.bak-*
+config.json.new
+logs/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
