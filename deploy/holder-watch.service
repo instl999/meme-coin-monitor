@@ -1,0 +1,45 @@
+# systemd unit for holder_watch, the read-only Solana token monitor.
+# Installed by deploy/install.sh (see DEPLOY.md); paths and user must match install.sh.
+[Unit]
+Description=holder_watch - Solana token holder/price monitor with Telegram alerts
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=holderwatch
+Group=holderwatch
+WorkingDirectory=/opt/holder-watch
+ExecStart=/opt/holder-watch/.venv/bin/python /opt/holder-watch/holder_watch.py
+Environment=PYTHONUNBUFFERED=1
+Restart=always
+RestartSec=30
+# Exit code 2 = invalid config.json: wait for a fix instead of restarting in a loop.
+RestartPreventExitStatus=2
+TimeoutStopSec=120
+
+# Hardening: the monitor only needs outbound HTTPS and write access to its own folder.
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/holder-watch
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+RestrictNamespaces=true
+LockPersonality=true
+# AF_NETLINK: glibc's resolver may query interfaces over netlink when looking up hostnames.
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,44 @@
+# Renews holder_watch's built-in trader lists: rebuilds the list of each chain whose built-in traders
+# are watched, watches the new list instead, reports to Telegram, and restarts the monitor when the
+# watch list changed. Started once a month by holder-watch-presets.timer; by hand:
+#   sudo systemctl start holder-watch-presets.service      (journalctl -u holder-watch-presets shows it)
+# Installed by deploy/install.sh (see DEPLOY.md); paths and user must match install.sh.
+[Unit]
+Description=holder_watch - renew the built-in trader lists
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=holderwatch
+Group=holderwatch
+WorkingDirectory=/opt/holder-watch
+ExecStart=/opt/holder-watch/.venv/bin/python /opt/holder-watch/holder_watch.py presets renew
+# "+": as root, to restart the monitor; only when the renewal changed the watch list (it leaves a flag).
+ExecStartPost=+/bin/sh -c 'if [ -f /opt/holder-watch/.presets-renewed ]; then rm -f /opt/holder-watch/.presets-renewed; /bin/systemctl try-restart holder-watch.service; fi'
+Environment=PYTHONUNBUFFERED=1
+# Scoring a few hundred wallets per chain, paced to free API limits, takes up to an hour or two.
+TimeoutStartSec=4h
+Nice=10
+
+# Same hardening as holder-watch.service.
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/holder-watch
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+RestrictNamespaces=true
+LockPersonality=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+UMask=0077

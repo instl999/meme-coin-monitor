@@ -1,0 +1,13 @@
+# Starts holder-watch-presets.service once a month: the built-in trader lists are renewed on the 1st,
+# around 05:00 UTC. Persistent: a run missed while the server was off happens at the next boot.
+# Installed and enabled by deploy/install.sh (--no-auto-renew leaves it off).
+[Unit]
+Description=holder_watch - renew the built-in trader lists once a month
+
+[Timer]
+OnCalendar=*-*-01 05:00:00 UTC
+RandomizedDelaySec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target
